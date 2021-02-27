@@ -1,0 +1,9 @@
+# D = math.sqrt((a[0] - b[0])**2 + (a[1] - b[1])**2)...)
+
+def dist(a, b):
+    sum = 0
+    for ai, bi in zip(a, b):
+        sum = sum + (ai - bi)**2
+    return np.sqrt(sum)
+    
+dist([130, 6, 10, 2, 600]]), [115, 6, 10, 1, 560])
