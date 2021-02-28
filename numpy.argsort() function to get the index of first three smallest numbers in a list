@@ -1,0 +1,8 @@
+import numpy as np
+lst = np.array([5,7,4,3,8,9])
+
+#function argsort() returns the array of indices of the sorted array
+print(np.argsort(lst))
+
+#output: [3 2 0 1 4 5]
+
