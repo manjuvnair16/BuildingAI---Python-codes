@@ -1,0 +1,26 @@
+# Ex -17: Bag of words - to find the 2 most similar lines in a nursery rhyme, when vector data of words is provided.
+
+import numpy as np
+
+data = [[1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+        [1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1],
+        [1, 1, 1, 0, 1, 3, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1]]
+
+def find_nearest_pair(data):
+    N = len(data)
+    dist = np.empty((N, N), dtype=np.float)
+    
+    for i in data:
+        for j in data:
+            sum = 0
+            for item_i, item_j in zip(i,j):
+                sum += abs(item_i - item_j)            # Manhattan distance: distance = abs(x1-y1) + abs(x2 - y2) +....
+            if sum == 0:
+                sum = np.inf
+            dist[data.index(i),data.index(j)] = sum    
+    
+    print(np.unravel_index(np.argmin(dist), dist.shape))
+
+find_nearest_pair(data)
