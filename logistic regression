@@ -1,0 +1,32 @@
+# logistic regression output = 1/ (1 + exp(- linear regression output))
+import math
+import numpy as np
+
+x = np.array([4, 3, 0])
+c1 = np.array([-.5, .1, .08])
+c2 = np.array([-.2, .2, .31])
+c3 = np.array([.5, -.1, 2.53])
+
+def sigmoid(z):
+    # add your implementation of the sigmoid function here
+    linear_op = 0
+    logistic_op = []
+    for item_x, item_c1 in zip(x,c1):
+        linear_op += item_c1*item_x
+    logistic_op.append(1/(1 + math.exp(-linear_op)))
+
+    linear_op = 0
+    for item_x, item_c2 in zip(x,c2):
+        linear_op += item_c2*item_x
+    logistic_op.append(1/(1 + math.exp(-linear_op)))
+
+    linear_op = 0
+    for item_x, item_c3 in zip(x,c3):
+        linear_op += item_c3*item_x
+    logistic_op.append(1/(1 + math.exp(-linear_op)))
+
+    
+    print(logistic_op.index(max(logistic_op)))
+
+# calculate the output of the sigmoid for x with all three coefficients
+sigmoid(3)
