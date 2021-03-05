@@ -1,0 +1,44 @@
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.datasets import make_moons
+from sklearn.model_selection import train_test_split
+import numpy as np
+
+# do not edit this
+# create fake data
+x, y = make_moons(
+    n_samples=500,  # the number of observations
+    random_state=42,
+    noise=0.3
+)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42)
+
+# Create a classifier and fit it to our data
+knn = KNeighborsClassifier(n_neighbors=42)   # k =42 in this case, the number can be changed to check for the optimal value of k
+knn.fit(x_train, y_train)
+train_acc = knn.score(x_train, y_train) # knn.score checks for accuracy between training and testing data
+test_acc = knn.score(x_test, y_test)
+
+print("training accuracy: %f" % train_acc)
+print("testing accuracy: %f" % test_acc)
+
+'''
+o/p: 
+for k = 42:
+training accuracy: 0.925373
+testing accuracy: 0.909091
+
+for k = 133:
+training accuracy: 0.847761
+testing accuracy: 0.884848
+
+for k = 1:
+training accuracy: 1.000000
+testing accuracy: 0.860606
+
+for k = 100:
+training accuracy: 0.880597
+testing accuracy: 0.890909
+
+for k = 250:
+training accuracy: 0.767164
+testing accuracy: 0.812121
